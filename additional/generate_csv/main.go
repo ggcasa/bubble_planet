@@ -1,3 +1,21 @@
+// ./additional/bin/generate_csv 17 document.csv 100000
+// 17: Lungimea ID-ului generat aleatoriu
+// "document.csv": Numele fișierului
+// 10000: Numărul de linii
+// ************************
+// go run . 17 docume.csv 30000000
+// Pornire generare: 30000000 linii, ID lungime 17 -> docume.csv
+// Succes! Am generat 30000000 linii în [docume.csv].
+// ************************
+// ls -slh docume.csv
+// 843M -rw-rw-r-- 1 ggcasa ggcasa 843M Jun  5 19:47 docume.csv
+// ************************
+// head -5 docume.csv
+// ID_Bula,Marca,Culoare
+// CIBEXZYVRSEIOPZCQ,DAC,Galben
+// IHJZBIFCOZKMWALWM,Dacia,Verde
+// ADMRWPRSYEPQAFHRV,Dacia,Negru
+// HLZTNSAYGVXJDLWBC,Roman,Alb
 package main
 
 import (
@@ -6,7 +24,6 @@ import (
 	"math/rand"
 	"os"
 	"strconv"
-	"time"
 )
 
 func random(min, max int) int {
@@ -44,14 +61,18 @@ func main() {
 	writer := csv.NewWriter(fisier)
 	defer writer.Flush()
 
-	header := []string{"ID_Bula", "Data_Creare", "Status"}
+	// Am actualizat antetul coloanelor pentru a reflecta noile date
+	header := []string{"ID_Bula", "Marca", "Culoare"}
 	if err := writer.Write(header); err != nil {
 		fmt.Printf("Eroare la scrierea antetului: %v\n", err)
 		return
 	}
 
+	// Definirea opțiunilor pentru mărci și culori
+	marci := []string{"Dacia", "Trabant", "Aro", "DAC", "Roman"}
+	culori := []string{"Alb", "Negru", "Rosu", "Albastru", "Verde", "Galben", "Gri"}
+
 	startChar := byte('A')
-	timestampAcum := time.Now().Format("2006-01-02 15:04:05")
 
 	var linie int64
 	for linie = 0; linie < numarLinii; linie++ {
@@ -66,7 +87,12 @@ func main() {
 			i++
 		}
 
-		dateRow := []string{idAleatoriu, timestampAcum, "activ"}
+		// Selectare aleatorie din liste folosind lungimea feliei ca limită maximă
+		marcaAleatorie := marci[random(0, len(marci))]
+		culoareAleatorie := culori[random(0, len(culori))]
+
+		// Scriere date în rând
+		dateRow := []string{idAleatoriu, marcaAleatorie, culoareAleatorie}
 		if err := writer.Write(dateRow); err != nil {
 			fmt.Printf("Eroare la scrierea liniei %d: %v\n", linie, err)
 			return
