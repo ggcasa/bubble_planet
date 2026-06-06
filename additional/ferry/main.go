@@ -4,6 +4,7 @@
 // ../proiecte/bubble_planet/additional/bin/generate_csv 17 cars.csv 1000000
 // Pornire generare: 1000000 linii, ID lungime 17 -> cars.csv
 // Succes! Am generat 1000000 linii în [cars.csv].
+//
 // ********
 //
 //	../proiecte/bubble_planet/additional/bin/csv2sqlite3 -csv=cars.csv -db=cars.db
@@ -24,11 +25,17 @@
 //  *********
 // sqlite3 cars.db "SELECT count(*) FROM masini;"
 // 1000000
+//
+// ************
+// ~/testunit$ ../proiecte/bubble_planet/additional/bin/ferry
+// 2026/06/06 10:25:34 Serverul a pornit pe http://localhost:9977
 //  ********
+//
 // curl -i  http://localhost:9977/?limit=100000 > cars.json
 //   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 //  Dload  Upload   Total   Spent    Left  Speed
 // 100 6393k    0 6393k    0     0  19.6M      0 --:--:-- --:--:-- --:--:-- 19.5M
+//
 //  *********
 // ls -lh
 // total 98M
