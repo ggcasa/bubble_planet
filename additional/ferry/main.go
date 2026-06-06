@@ -45,6 +45,16 @@
 // -rw-r--r-- 1 ggcasa ggcasa    0 Jun  6 10:15 cars.db-wal
 // -rw-rw-r-- 1 ggcasa ggcasa 6.3M Jun  6 10:26 cars.json
 
+// **********
+//
+// curl -i  http://localhost:9977/?limit=1000000 > million_bubbles.json
+//
+//	 % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+//	Dload  Upload   Total   Spent    Left  Speed
+//
+// 100 62.4M    0 62.4M    0     0  22.7M      0 --:--:--  0:00:02 --:--:-- 22.7M
+// ggcasa@ggltp:~/testunit$ ls -lh million_bubbles.json
+// -rw-rw-r-- 1 ggcasa ggcasa 63M Jun  6 10:42 million_bubbles.json
 package main
 
 import (
