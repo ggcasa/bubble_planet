@@ -1,3 +1,43 @@
+// go build -o ../bin/ferry .
+// mkdir $HOME/testunit
+// cd ~/testunit/
+// ../proiecte/bubble_planet/additional/bin/generate_csv 17 cars.csv 1000000
+// Pornire generare: 1000000 linii, ID lungime 17 -> cars.csv
+// Succes! Am generat 1000000 linii în [cars.csv].
+// ********
+//
+//	../proiecte/bubble_planet/additional/bin/csv2sqlite3 -csv=cars.csv -db=cars.db
+//
+// Pornire import: [cars.csv] -> [cars.db] (pure Go)...
+// Am procesat deja 100000 linii...
+// Am procesat deja 200000 linii...
+// Am procesat deja 300000 linii...
+// Am procesat deja 400000 linii...
+// Am procesat deja 500000 linii...
+// Am procesat deja 600000 linii...
+// Am procesat deja 700000 linii...
+// Am procesat deja 800000 linii...
+// Am procesat deja 900000 linii...
+// Am procesat deja 1000000 linii...
+//
+// Succes! Am importat 1000000 rânduri în [cars.db] în 29.904125209s.
+//  *********
+// sqlite3 cars.db "SELECT count(*) FROM masini;"
+// 1000000
+//  ********
+// curl -i  http://localhost:9977/?limit=100000 > cars.json
+//   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+//  Dload  Upload   Total   Spent    Left  Speed
+// 100 6393k    0 6393k    0     0  19.6M      0 --:--:-- --:--:-- --:--:-- 19.5M
+//  *********
+// ls -lh
+// total 98M
+// -rw-rw-r-- 1 ggcasa ggcasa  29M Jun  6 10:03 cars.csv
+// -rw-r--r-- 1 ggcasa ggcasa  63M Jun  6 10:15 cars.db
+// -rw-r--r-- 1 ggcasa ggcasa  32K Jun  6 10:25 cars.db-shm
+// -rw-r--r-- 1 ggcasa ggcasa    0 Jun  6 10:15 cars.db-wal
+// -rw-rw-r-- 1 ggcasa ggcasa 6.3M Jun  6 10:26 cars.json
+
 package main
 
 import (
